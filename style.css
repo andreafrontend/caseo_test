@@ -1,0 +1,192 @@
+body {
+    font-family: system-ui;
+    background: #ffffff;
+    color: white;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    height: 1000px;
+}
+
+nav {
+    height: 60px;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    color: grey;
+    transition: background-color 0.4s ease-in;
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
+
+nav .logo svg *,
+nav .lines svg *,
+nav .cross svg * {
+    transition: fill 0.4s ease-in;
+}
+
+.link_box {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    height: 100vh;
+    align-items: center;
+    background-color: #76A136;
+    top: 60px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    transform: translateX(240px);
+}
+
+.link_box>a {
+    height: 80px;
+    color: #ffffff;
+    font-weight: 400;
+    margin-left: 0px;
+    text-decoration: none;
+    line-height: 80px;
+    width: 100%;
+    text-align: left;
+    text-indent: 20px;
+    font-size: 20px;
+}
+
+.link_box>a.active,
+.link_box>a:hover {
+    color: #76A136;
+    background-color: #ffffff;
+    font-weight: 700;
+}
+
+.lines,
+.cross {
+    position: absolute;
+    right: 5.62%;
+    top: 15px;
+}
+
+.cross {
+    display: none;
+}
+
+nav input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    right: 5.62%;
+    top: 15px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 2;
+    -webkit-touch-callout: none;
+}
+
+
+/* Classes modifiés après le scroll */
+
+nav.scrolled {
+    background-color: #76A136;
+}
+
+nav.scrolled .logo svg *,
+nav.scrolled .lines svg *,
+nav.scrolled .cross svg * {
+    fill: #ffffff;
+}
+
+
+/* Classes modifié lors de l'apparation du menu lateral */
+
+nav input:checked~.link_box {
+    transform: translateX(0px);
+}
+
+nav input:checked~.cross {
+    display: block;
+}
+
+nav input:checked~.lines {
+    display: none;
+}
+
+
+/* ----- */
+
+@media only screen and (min-width: 767px) {
+    nav input,
+    nav .cross,
+    nav .lines {
+        display: none;
+    }
+    .link_box {
+        font-family: 'Lato', sans-serif;
+        font-weight: 400;
+        position: absolute;
+        height: 100%;
+        align-items: center;
+        background-color: transparent;
+        top: 0px;
+        right: 0px;
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        transition: none;
+        transform: translateX(0px);
+    }
+    .link_box>a {
+        height: 60px;
+        color: #333333;
+        margin-left: 0px;
+        text-decoration: none;
+        line-height: 60px;
+        width: auto;
+        text-align: center;
+        text-indent: 0px;
+        font-size: 16px;
+        margin-right: 40px;
+        transition: color 0.4s ease-in;
+    }
+    .link_box>a.contact {
+        background-color: #76A136;
+        color: #ffffff;
+        padding: 0px 18px;
+        line-height: 32px;
+        height: 32px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        border-radius: 6px;
+        transition: background-color 0.4s ease-in;
+        text-transform: uppercase;
+    }
+    .link_box>a.active,
+    .link_box>a:hover:not(.contact) {
+        color: #76A136;
+        font-weight: 400;
+        border-bottom: 3px solid #76A136;
+        margin-bottom: 3px;
+        line-height: 65px;
+        background-color: transparent;
+        transition: color 0.4s ease-in;
+    }
+    /* Class ajouté lors du scroll */
+    nav.scrolled .link_box>a {
+        color: #ffffff;
+    }
+    nav.scrolled .link_box>a.active,
+    nav.scrolled .link_box>a:hover:not(.contact) {
+        color: #333333;
+        border-bottom: 3px solid #333333;
+    }
+    nav.scrolled .link_box>a.contact {
+        color: #76A136;
+        background-color: #ffffff;
+    }
+}
